@@ -9,7 +9,6 @@ import { FormsModule }   from '@angular/forms';
 
 // import services
 import {conf, AllErrorHandler, Api, AppConf, AuthGuard, Core, Notify, RxApi, Auth, PostService, LimitPipe} from './index';
-
 // import components
 import {HomeComponent} from './components/home/home.component';
 import {AboutComponent} from './components/about/about.component';

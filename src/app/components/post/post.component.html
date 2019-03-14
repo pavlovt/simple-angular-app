@@ -1,1 +1,13 @@
-<h2>Product {{id}} Details</h2>
+<h2>Product Details</h2>
+
+<div *ngIf="!edit">
+<p>ID: {{id}}</p>
+<p>TITLE: {{item.title}}</p>
+<p>DESC: {{item.body}}</p>
+</div>
+
+<ng-template>
+    <form>
+        
+    </form>
+</ng-template>
