@@ -1,6 +1,6 @@
-import { OpaqueToken } from "@angular/core";
+import { InjectionToken } from "@angular/core";
 
-export let conf = new OpaqueToken("conf");
+export let conf = new InjectionToken("conf");
 
 export const AppConf = {
     defaultTitle: 'BreezN - ',
@@ -8,37 +8,13 @@ export const AppConf = {
     userInfo: {},
     userRoles: [],
     userLocations: [],
-    server: "https://development.veristreamcloud.com/api",
-    apis: {
-        websocket: '/websocket',
+    server: "http://jsonplaceholder.typicode.com",
+    api: {
+        posts: '/posts',
         auth: '/oauth/token',
-        authSSOLogin: '/saml/auth?t=',
-        userInfo: '/users/self',
         logout: '/logout',
         users: '/users',
-        usersUpload: '/users/bulkimport',
         roles: '/roles',
-        location: '/locations',
-        visits: '/visits',
-        visitTypes: '/visittypes',
-        widgets: '/dashboard/widgets',
-        resetPass: '/reset/password',
-        updatePass: '/reset/password/mail',
-        customer: '/self',
-        customers: '/customers',
-        devices: '/kiosks',
-        kioskTemplates: '/kiosktemplates',
-        documents: '/documents',
-        timezones: '/timezones',
-        checkToken: '/reset/token/valid',
-        backgroundCheck: '/backgroundcheck',
-        reports: '/reports',
-        activeDirectory: '/integrations',
-        countries: '/countries',
-        watchlist: '/watchlistentries',
-        ssoGet: '/samlidp/customer',
-        ssoSet: '/samlidp',
-        ssoDownload: '/saml/metadata',
     },
     progress: false,
     globalRoles: ['VeristreamAdmin', 'GlobalAdmin'],
@@ -81,14 +57,6 @@ export const AppConf = {
             '/settings/watchlist': ['VeristreamAdmin', 'GlobalAdmin', 'LocalAdmin', 'SecurityOfficer', 'Receptionist'],
         }
     },
-    tooltip: {
-        html: true,
-        placement: 'top',
-    },
-    printerTypes: [ {id: 0, text: 'No Printer'},
-                    {id: 1, text: 'Brother QL-710W'},
-                    {id: 2, text: 'Brother QL-720NW'},
-                    {id: 3, text: 'Brother QL-820NWB'}],
     cache: {
         locationId: null,
         dashboardColumns: null,

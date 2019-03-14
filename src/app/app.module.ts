@@ -1,20 +1,46 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import {HttpClientModule} from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule }   from '@angular/forms';
 
+// import services
+import {conf, AllErrorHandler, Api, AppConf, AuthGuard, Core, Notify, RxApi, Auth, PostService} from './index';
+
+// import components
+import {HomeComponent} from './components/home/home.component';
+import {AboutComponent} from './components/about/about.component';
+import {PostComponent} from './components/post/post.component';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
+    AboutComponent,
+    PostComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    CommonModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    Api,
+    RxApi,
+    Notify,
+    Auth,
+    AuthGuard,
+    Core,
+    PostService,
+    { provide: conf, useValue: AppConf },
+    // custom global angular error handler
+    {provide: ErrorHandler, useClass: AllErrorHandler}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

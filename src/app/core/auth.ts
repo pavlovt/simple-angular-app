@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
-import { Notify } from "./Notify";
+import { Notify } from "./notify";
 import { Api } from "./api";
 import { conf } from './conf';
 import { Core } from './core';

@@ -1,12 +1,17 @@
 import { Injectable, Inject } from '@angular/core';
+// import { Http, Headers, RequestOptions, Request } from '@angular/http'; // RequestOptionsArgs
+import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
 import _ from 'lodash';
-let Promise = (<any>window).Promise || require('promise');
+let Promise = (<any>window).Promise;
 import { conf } from './conf';
 import { Notify } from "./notify";
 import { Core } from "./core";
 
+/**
+ * Backend API service which uses Angular's Http service (RX.js 5.0)
+ */
 @Injectable()
-export class Api {
+export class RxApi {
     defaultHeaders = {
         Accept: 'application/json',
         'Content-Type': 'application/json'
@@ -16,6 +21,7 @@ export class Api {
     constructor(
         private msg: Notify,
         private core: Core,
+        private http: HttpClient,
         @Inject(conf) private conf: any) {
 
     }
@@ -30,13 +36,23 @@ export class Api {
         if (this.conf.user.access_token && !_.includes(url, this.conf.apis.auth)) {
             headers.Authorization = 'Bearer ' + this.conf.user.access_token;
         }
+        headers = new HttpHeaders(headers);
+        let rxOptions = {responseType: 'json', headers: headers, ...options.ajax};
+        const req = new HttpRequest(method, this.url(url), rxOptions);
 
-        var promise = new Promise((resolve, reject) => {
+        return this.http.request(req)
+            // .map((res:any) => res.body)
+            /*.debounceTime(400)
+            .switchMap((res:any) => {
+                console.log(res);
+                return res.body ? res.body : null;
+            })*/
+
+
+        /*var promise = new Promise((resolve, reject) => {
             // this.progress.start();
             // this.conf.progress = true;
             pace.track(() => {
-                // Show the loading button only when the request method is PUT, PATCH, POST
-                if(method !== 'GET' && method !== 'DELETE') this.loadingService.show(url);
                 $.ajax({
                     url: this.url(url),
                     method, headers, data,
@@ -50,20 +66,16 @@ export class Api {
                 .fail((xhr, status, err) => {
                     // this.progress.done();
                     // this.conf.progress = false;
-                    reject({xhr, status, err, url});
+                    reject({xhr, status, err});
 
                     if (_.get(options, 'error')) {
-                        this.handleErrors(xhr, status, err, url);
+                        this.handleErrors(xhr, status, err);
                     }
                 })
-                .always(() => {
-                    // invoke the hide method for the loading Service that hides the loading button only when the method is PUT, PATCH, POST
-                    if(method !== 'GET' && method !== 'DELETE') this.loadingService.hide(url);
-                });
-            });
+            })
         });
 
-        return promise;
+        return promise;*/
     }
 
     url(url) {
@@ -98,13 +110,9 @@ export class Api {
         
     }
 
-    handleErrors(xhr, status, err, url) {
-        const msg = _.get(xhr, 'responseJSON.error_description') || _.get(xhr, 'responseJSON.message') || "Server error";
-        // console.log(xhr, status, err, url)
+    handleErrors(xhr, status, err) {
+        const msg = _.get(xhr, 'responseJSON.error_description') || _.get(xhr, 'responseJSON.message');
         if (xhr.status !== 401 && msg) {
-            // do not show error message when image urls return 404
-            if (xhr.status === 404 && _.includes(['photo', 'logo', 'welcomeimage'], _.last(url.split('/')))) return false;
-
             this.msg.error(msg);
         } else if (xhr.status === 401) {
             // the session has expired - logout the user
