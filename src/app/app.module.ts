@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { FormsModule }   from '@angular/forms';
 
 // import services
-import {conf, AllErrorHandler, Api, AppConf, AuthGuard, Core, Notify, RxApi, Auth, PostService} from './index';
+import {conf, AllErrorHandler, Api, AppConf, AuthGuard, Core, Notify, RxApi, Auth, PostService, LimitPipe} from './index';
 
 // import components
 import {HomeComponent} from './components/home/home.component';
@@ -21,6 +21,7 @@ import {PostComponent} from './components/post/post.component';
     HomeComponent,
     AboutComponent,
     PostComponent,
+    LimitPipe,
   ],
   imports: [
     BrowserModule,
