@@ -11,6 +11,7 @@ import {PostService, Notify} from '@app/index';
 export class PostComponent implements OnInit {
     id: number;
     item = {};
+    isEdit = false;
 
     constructor(
         private route: ActivatedRoute,
@@ -26,5 +27,9 @@ export class PostComponent implements OnInit {
             console.log(res)
             this.item = res;
         })
+    }
+
+    edit() {
+        this.isEdit = true;
     }
 }
