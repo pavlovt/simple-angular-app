@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import { ActivatedRoute} from '@angular/router';
 import {PostService, Notify} from '@app/index';
+import { NgForm} from '@angular/forms';
 
 @Component({
     styleUrls: [
@@ -31,5 +32,12 @@ export class PostComponent implements OnInit {
 
     edit() {
         this.isEdit = true;
+    }
+
+    submit(form: NgForm) {
+        this.post.save(form.value)
+        .then(res => {
+            this.isEdit = false;
+        })
     }
 }

@@ -22,13 +22,13 @@ export class PostService {
 
     save(post) {
         if (post && post.id) {
-            this.api.put(this.conf.api.posts + '/' + post.id, post)
+            return this.api.put(this.conf.api.posts + '/' + post.id, post)
             .then(res => {
                 this.msg.info('The post was successfully updated');
                 return res;
             })
         } else {
-            this.api.post(this.conf.api.posts, post)
+            return this.api.post(this.conf.api.posts, post)
             .then(res => {
                 this.msg.info('The post was successfully created');
                 return res;
