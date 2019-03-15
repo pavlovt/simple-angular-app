@@ -18,7 +18,7 @@ export class Notify {
         alertify.error(msg);
     }
 
-    confirm(msg, title = '', okFn, cancelFn = null) {
+    confirm(msg, okFn, cancelFn = null, title = '') {
         // confirm dialog
         alertify.defaults.glossary.title = title;
         alertify.confirm(msg, okFn, cancelFn);        
