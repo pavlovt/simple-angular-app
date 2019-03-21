@@ -15,48 +15,40 @@ export class Auth {
         public core: Core,
         @Inject(conf) private conf: any) {}
     
-    async login(username, password, onError) {
+    async login(username: string, password: string) {
         this.user = {};
         try {
-            // the user loks like
-            // {"access_token":"03c85e48-93ff-4af4-88d2-fead8c5bcf57","token_type":"bearer","refresh_token":"46117d1a-2f1c-4ed5-9d0c-ff4ea92ab73a","expires_in":43108,"scope":"read"}
-            this.user = await this.api.post(
-                this.conf.apis.auth,
-                {grant_type: 'password', username: username, password: password, scope: 'read'},
-                {'Content-Type': 'application/x-www-form-urlencoded', Authorization: 'Basic aXZpc2l0b3Itd2ViOml2aXNpdG9yLXNlY3JldA=='});
+            // the user looks like
+            // just checking the username because of the api limitations
+            this.user = await this.api.get(this.conf.api.users + `?username=${username}`)
 
-            this.user.username = username;
-            // this.core.saveLocal('user', this.user);
+            this.core.saveLocal('user', this.user);
             this.conf.user = this.user;
+            // fake access token
+            this.conf.user.access_token = 123;
             
             const redirectUrl = this.core.getLocal('redirectUrl');
-            this.core.goto(redirectUrl || '/dashboard');
+            this.core.goto(redirectUrl || this.conf.def.defaultRedirect);
 
             this.msg.info('You are logged in');
             this.core.removeLocal('redirectUrl');
         } catch(err) {
             // call error callback
-            onError && onError();
+            console.log(err);
         }
     }
 
     logout() {
         this.core.removeLocal('user');
-        this.core.removeLocal('userInfo');
-        this.core.removeLocal('userRoles');
-        this.core.removeLocal('userLocations');
         
         this.conf.user = {};
         this.conf.cache = {};
-        this.core.goto('/public');
+        this.core.goto('/login');
         this.msg.info('You are logged out');
-        this.api.get(this.conf.apis.logout);
+        // this.api.get(this.conf.apis.logout);
     }
 
     isAuth() {
         return !!this.conf.user.access_token;
     }
-
-
-
 }

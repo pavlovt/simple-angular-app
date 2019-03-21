@@ -64,6 +64,6 @@ export const AppConf = {
         currentLocation: null,
     },
     def: {
-        minSearchChars: 2
+        defaultRedirect: '/home'
     }
 };

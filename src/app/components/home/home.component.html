@@ -13,6 +13,10 @@
         </a></td>
         <td>{{post.title}}</td>
         <td>{{post.body}}</td>
-        <td><a href="" (click)="remove($event, post.id)">Delete</a></td>
+        <td class="actions">
+            <a [routerLink]=" ['/post', post.id] ">Edit</a>
+            <a href="" (click)="remove($event, post.id)">Delete</a>
+            
+        </td>
     </tr>
 </table>

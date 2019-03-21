@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit() {
-        this.msg.info('ZZZZZZZZZZZZ')
+        // this.msg.info('ZZZZZZZZZZZZ')
     }
 
     remove(evt, postId) {

@@ -15,20 +15,13 @@ export class AuthGuard implements CanActivate {
     ) {}
 
     canActivate(unused, route) {
-        if (!this.auth.isAuth()) {
-            this.core.goto('/public');
+        if (route.url !== '/login' && !this.auth.isAuth()) {
+            // save the page where the user would like to go
+            // so he could be redirected there after he logs in
+            this.core.saveLocal('redirectUrl', route.url);
+            this.core.goto('/login');
         }
         
-        // check if a substring in the conf.access.pages includes a substring of the route.url
-        const checkForSubstring = _.keys(this.conf.access.pages).find(e => route.url.includes(e));
-        const userCheck = _.isEmpty(_.intersection((this.conf.access.pages[checkForSubstring] || []), this.conf.userRoles));
-        // If user is logged but has no roles something is wrong and it should log in again
-        if (userCheck && route.url === '/dashboard') this.auth.logout();
-        // check if logged in user's role has access to this page
-        else if (userCheck) {
-            this.core.saveLocal('redirectUrl', route.url);
-            this.core.goto(this.conf.defaultRoute);
-        }
         return this.auth.isAuth();
     }
 }

@@ -13,6 +13,7 @@ import {conf, AllErrorHandler, Api, AppConf, AuthGuard, Core, Notify, RxApi, Aut
 import {HomeComponent} from './components/home/home.component';
 import {AboutComponent} from './components/about/about.component';
 import {PostComponent} from './components/post/post.component';
+import {LoginComponent} from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import {PostComponent} from './components/post/post.component';
     HomeComponent,
     AboutComponent,
     PostComponent,
+    LoginComponent,
     LimitPipe,
   ],
   imports: [

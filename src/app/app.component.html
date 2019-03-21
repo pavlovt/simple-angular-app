@@ -6,6 +6,9 @@
     <a [routerLink]=" ['about'] "
         routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
         About
+    </a> |
+    <a (click)="auth.logout()">
+        Logout
     </a>
 </nav>
 
