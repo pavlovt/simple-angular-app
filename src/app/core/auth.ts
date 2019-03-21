@@ -20,12 +20,21 @@ export class Auth {
         try {
             // the user looks like
             // just checking the username because of the api limitations
-            this.user = await this.api.get(this.conf.api.users + `?username=${username}`)
+            this.user = await this.api.get(this.conf.api.users + `?username=${username}`);
 
-            this.core.saveLocal('user', this.user);
+            if (_.isEmpty(this.user)) {
+                this.user = {};
+                this.msg.error('Wrong username or password');
+                return;
+            }
+
+            this.user = this.user[0];
             this.conf.user = this.user;
             // fake access token
             this.conf.user.access_token = 123;
+
+            this.core.saveLocal('user', this.user);
+            
             
             const redirectUrl = this.core.getLocal('redirectUrl');
             this.core.goto(redirectUrl || this.conf.def.defaultRedirect);

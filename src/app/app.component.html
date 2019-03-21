@@ -6,10 +6,13 @@
     <a [routerLink]=" ['about'] "
         routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
         About
-    </a> |
-    <a (click)="auth.logout()">
-        Logout
-    </a>
+    </a> 
+    <span *ngIf="auth.isAuth()">
+        |
+        <a (click)="auth.logout()">
+            Logout
+        </a>
+    </span>
 </nav>
 
 <main>
