@@ -29,7 +29,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
     remove(evt, postId) {
         evt.preventDefault();
         this.msg.confirm('Are you sure you want to delete this post?', () => {
-            this.post.remove(postId);
+            this.post.remove(postId)
+            // refresh the data
+            .then(res => this.ngOnInit())
         })
     }
 }

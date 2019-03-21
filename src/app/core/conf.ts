@@ -8,7 +8,7 @@ export const AppConf = {
     userInfo: {},
     userRoles: [],
     userLocations: [],
-    server: "http://jsonplaceholder.typicode.com",
+    server: "http://localhost:3000",
     api: {
         posts: '/posts',
         auth: '/oauth/token',
