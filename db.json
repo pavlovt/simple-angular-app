@@ -1,15 +1,15 @@
 {
   "posts": [
     {
-      "userId": 1,
       "id": 2,
       "title": "qui est esse",
+      "image": "https://images-eu.ssl-images-amazon.com/images/G/02/digital/video/merch2016/HUDv3/GW_TopCard_AVD11791_Opt1._CB469866944_SY260_.jpg",
       "body": "est rerum tempore vitae\nsequi sint nihil reprehenderit dolor beatae ea dolores neque\nfugiat blanditiis voluptate porro vel nihil molestiae ut reiciendis\nqui aperiam non debitis possimus qui neque nisi nulla"
     },
     {
-      "userId": 1,
       "id": 4,
       "title": "eum et est occaecati",
+      "image": "https://images-eu.ssl-images-amazon.com/images/G/02/xba/Dashboard_UK_All_March_2019_x1_V2._CB454550352_SY260_.jpg",
       "body": "ullam et saepe reiciendis voluptatem adipisci\nsit amet autem assumenda provident rerum culpa\nquis hic commodi nesciunt rem tenetur doloremque ipsam iure\nquis sunt voluptatem rerum illo velit"
     },
     {

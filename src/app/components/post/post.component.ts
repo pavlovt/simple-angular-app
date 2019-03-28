@@ -40,4 +40,8 @@ export class PostComponent implements OnInit {
             this.isEdit = false;
         })
     }
+
+    image(image) {
+        return image && image !== '' ? '<img height="100px" src="'+image+'">' : '';
+    }
 }

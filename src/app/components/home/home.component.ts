@@ -34,4 +34,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
             .then(res => this.ngOnInit())
         })
     }
+
+    image(image) {
+        return image && image !== '' ? '<img height="30px" src="'+image+'">' : '';
+    }
 }

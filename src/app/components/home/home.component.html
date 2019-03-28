@@ -4,6 +4,7 @@
     <tr>
         <th>ID</th>
         <th>TITLE</th>
+        <th>IMAGE</th>
         <th>DESC</th>
         <th>ACTIONS</th>
     </tr>
@@ -12,6 +13,8 @@
             {{post.id}}
         </a></td>
         <td>{{post.title}}</td>
+        <!-- I use [innerHtml] because I am returning html and if I use {{image(post.image)}} in trhis case it will not work (you can try it) -->
+        <td [innerHtml]="image(post.image)"></td>
         <td>{{post.body}}</td>
         <td class="actions">
             <a [routerLink]=" ['/post', post.id] ">Edit</a>

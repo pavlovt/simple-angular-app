@@ -23,7 +23,10 @@ export class Core {
          * @param {object} params Params that are needed by the path
          */
         goto(path, params?: any) {
-            this.router.navigate([path, params || {}]);
+            // Welcome to the Angular Club. Breaking changes is served for breakfast here! 
+            // https://stackoverflow.com/questions/40089486/exception-root-segment-cannot-have-matrix-parameters
+            if (path === '/') this.router.navigate([path]);
+            else this.router.navigate([path, params || {}]);
         }
 
         // return true if the value is [], {}, "", null, undefined
