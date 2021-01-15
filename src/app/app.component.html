@@ -1,20 +1,13 @@
-<nav>
-    <a [routerLink]=" ['home'] "
-        routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
-        Home
-    </a> | 
-    <a [routerLink]=" ['about'] "
-        routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
-        About
-    </a> 
-    <span *ngIf="auth.isAuth()">
-        |
-        <a (click)="auth.logout()">
-            Logout
-        </a>
-    </span>
-</nav>
-
-<main>
+<section>
+  <div>
+    <span *ngIf="showMenu">
+      <a [routerLink]="['']" class="ml-5">Home</a>&nbsp;
+    </span>  
+    <!-- <button mat-raised-button *ngIf="!loggedIn" (click)="login()">Login</button>
+    <button mat-raised-button *ngIf="loggedIn" (click)="logout()">Logout</button> -->
+  </div>
+  <div class="w-full">
     <router-outlet></router-outlet>
-</main>
+  </div>
+</section>
+

@@ -1,0 +1,17 @@
+@import '../../../../../styles/variables.scss';
+
+.form-group {
+    margin-bottom: 5px;
+}
+
+#xinput-custom {
+    height: 78px;
+    input.form-control {
+        border: 1px solid $ziggurat;
+    }
+
+    span.glyphicon {
+        margin-right: 5px;
+    }
+
+}
