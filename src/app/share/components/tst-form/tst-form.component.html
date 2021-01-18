@@ -1,4 +1,9 @@
-<form [formGroup]="form.getForm()" (ngSubmit)="submitForm($event)" class="" id="visitForm">
+<form
+  [formGroup]="form.getForm()"
+  (ngSubmit)="submitForm($event)"
+  class=""
+  id="visitForm"
+>
   <xinput name="name" label="Name" [form]="form"></xinput>
   <xinput name="email" label="Email" [form]="form"></xinput>
 </form>
